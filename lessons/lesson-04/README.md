@@ -1,3 +1,27 @@
+---
+title: "Lesson 04: 函数与错误处理"
+chapter: 04
+part: Go语言基础
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 错误处理
+prerequisites:
+  - "[[lesson-03/README]]"
+related:
+  - "[[lesson-03/README]]"
+  - "[[lesson-05/README]]"
+key_concepts:
+  - 多返回值
+  - 闭包
+  - error
+  - panic
+  - recover
+  - error wrapping
+---
+
 # Lesson 04: 函数与错误处理
 
 ## 1. 学习目标
@@ -6,7 +30,7 @@
 - 深刻理解 Go 的错误处理哲学：Error is Value
 - 掌握 error wrapping 与解包技巧
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java开发者|Java 开发者]]的类比
 
 ### 多返回值 vs 包装类
 Java 函数只能返回一个值。如果想返回多个，通常要定义一个 `Result` 类。Go 原生支持多返回值，最常见的模式是 `(result, error)`。
@@ -37,8 +61,8 @@ if err != nil {
 ### Error Wrapping
 使用 `fmt.Errorf("...: %w", err)` 可以将原始错误包装起来，保留上下文信息，同时允许调用者使用 `errors.Is` 或 `errors.As` 进行判断。
 
-### Java 对比
-- **性能**: `panic/recover` 机制类似于 Exception，但开销巨大。Go 推荐只在不可恢复的灾难性错误（如数组越界）时使用 `panic`。
+### [[Java对比|Java 对比]]
+- **性能**: `panic/recover` 机制类似于 Exception，但开销巨大。Go 推荐只在不可恢复的灾难性错误（如[[Array|数组]]越界）时使用 `panic`。
 - **代码量**: 虽然 `if err != nil` 增加了代码行数，但它让程序的执行路径变得极其清晰。
 
 ## 4. 代码示例
@@ -71,4 +95,4 @@ func process() (int, error) {
 - **答**: `errors.Is` 用于判断错误是否为特定实例（类似 `==`）；`errors.As` 用于判断错误是否为特定类型并提取其值（类似类型转换）。
 
 ## 8. 本节总结
-函数是 Go 的基本构建块。理解了“错误即值”的理念，你就掌握了 Go 编程的灵魂。不要抱怨 `if err != nil` 繁琐，它是你程序稳定运行的守护神。
+函数是 Go 的基本构建块。理解了“错误即值”的理念，你就掌握了 [[Go编程|Go 编程]]的灵魂。不要抱怨 `if err != nil` 繁琐，它是你程序稳定运行的守护神。

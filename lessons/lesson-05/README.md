@@ -1,12 +1,36 @@
-# Lesson 05: struct / method / interface
+---
+title: "Lesson 05: struct / method / interface"
+chapter: 05
+part: Go语言基础
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 对象模型
+prerequisites:
+  - "[[lesson-04/README]]"
+related:
+  - "[[lesson-04/README]]"
+  - "[[lesson-06/README]]"
+key_concepts:
+  - struct
+  - method
+  - interface
+  - receiver
+  - 组合
+  - 多态
+---
+
+# Lesson 05: [[struct]] / [[method]] / [[interface]]
 
 ## 1. 学习目标
-- 理解 Go 语言中 struct 与 Java class 的本质区别
-- 掌握 method 的定义方式及 receiver 的选择
+- 理解 [[Go语言|Go 语言]]中 struct 与 [[Java]] class 的本质区别
+- 掌握 method 的定义方式及 [[receiver]] 的选择
 - 深刻理解 Go 的隐式接口实现机制
 - 掌握组合（Composition）在 Go 中的应用
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java开发者|Java 开发者]]的类比
 
 ### struct vs class
 Java 的 `class` 既包含数据也包含行为。Go 的 `struct` 只包含数据。行为是通过在 `struct` 之外定义 `method` 并绑定到它上面的。
@@ -29,7 +53,7 @@ Java 使用 `extends`。Go 使用“匿名嵌入”。如果你在 `struct A` �
 ### 空接口 any
 `interface{}`（现在常用 `any` 关键字）可以代表任何类型，类似于 Java 的 `Object`。但在使用时通常需要配合类型断言（Type Assertion）。
 
-### Java 对比
+### [[Java对比|Java 对比]]
 - **多态**: Java 的多态是基于类继承体系的。Go 的多态是基于接口满足的，更加解耦。
 - **构造函数**: Go 没有构造函数，通常使用 `NewXxx` 命名的普通函数来返回初始化的结构体指针。
 

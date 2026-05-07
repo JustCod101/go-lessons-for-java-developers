@@ -1,15 +1,39 @@
-# Lesson 12: HTTP 服务 (HTTP Server)
+---
+title: "Lesson 12: HTTP 服务 (HTTP Server)"
+chapter: 12
+part: Go高级特性
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - Web开发
+prerequisites:
+  - "[[lesson-11/README]]"
+related:
+  - "[[lesson-11/README]]"
+  - "[[lesson-13/README]]"
+key_concepts:
+  - net/http
+  - Handler
+  - ServeMux
+  - Middleware
+  - JSON
+  - REST API
+---
 
-在 Java 中，我们习惯使用 Spring Boot 来构建 Web 应用。在 Go 中，标准库 `net/http` 已经非常强大，足以构建高性能的 REST API。
+# Lesson 12: [[HTTP服务|HTTP 服务]] ([[HTTP Server]])
+
+在 [[Java]] 中，我们习惯使用 Spring Boot 来构建 Web 应用。在 Go 中，标准库 `net/http` 已经非常强大，足以构建高性能的 [[REST API]]。
 
 ## 1. 学习目标
 * 掌握 `net/http` 标准库的基本用法
 * 理解 `Handler` 和 `ServeMux` 的概念
-* 学会编写中间件 (Middleware)
-* 掌握 JSON 请求解析与响应返回
+* 学会编写中间件 ([[Middleware]])
+* 掌握 [[JSON]] 请求解析与响应返回
 * 了解如何构建简单的分层架构
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java开发者|Java 开发者]]的类比
 * **`net/http`**: 相当于 Servlet API + 内置的 Tomcat/Jetty。
 * **`ServeMux`**: 相当于 Spring MVC 的 `DispatcherServlet` 或路由映射。
 * **`HandlerFunc`**: 相当于 Controller 中的一个 `@RequestMapping` 方法。
@@ -18,9 +42,9 @@
 
 ## 3. 核心概念
 
-### Handler 与 ServeMux
+### [[Handler]] 与 [[ServeMux]]
 Go 的 HTTP 处理核心是 `http.Handler` 接口。`ServeMux` 是一个 HTTP 请求多路复用器，它根据 URL 匹配对应的 Handler。
-* **Java 对比**: 在 Spring Boot 中，你通过注解定义路由。在 Go 中，你通常显式地将路径注册到 `ServeMux`。
+* **[[Java对比|Java 对比]]**: 在 Spring Boot 中，你通过注解定义路由。在 Go 中，你通常显式地将路径注册到 `ServeMux`。
 
 ### 中间件 (Middleware)
 Go 的中间件本质上是一个接收 `http.Handler` 并返回 `http.Handler` 的函数。它利用了闭包和装饰器模式。
@@ -57,7 +81,7 @@ go run src/main.go src/handler.go
 ## 5. 常见误区
 * **寻找 "Go 版 Spring Boot"**: 很多 Java 开发者第一反应是找一个像 Spring 一样全家桶式的框架（如 Gin, Echo, Beego）。虽然这些框架很好用，但建议先掌握 `net/http`，因为它是所有框架的基础。
 * **错误处理**: 在 Handler 中不要忘记检查错误。如果解析 JSON 失败，必须显式调用 `http.Error` 并返回，否则程序会继续执行。
-* **并发安全**: 每个 HTTP 请求都在独立的 Goroutine 中运行。如果你的 Handler 访问了全局变量，必须考虑加锁（类似于 Java 中的单例 Bean 访问成员变量）。
+* **[[并发安全]]**: 每个 HTTP 请求都在独立的 [[Goroutine]] 中运行。如果你的 Handler 访问了全局变量，必须考虑加锁（类似于 Java 中的单例 Bean 访问成员变量）。
 
 ## 6. 本节练习
 1. 修改 `UserHandler`，支持通过 URL 参数（如 `/user?id=123`）获取 ID。

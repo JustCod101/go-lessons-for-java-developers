@@ -1,14 +1,37 @@
+---
+title: "Lesson 16: Go 进阶路线"
+chapter: 16
+part: Go高级特性
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 进阶路线
+prerequisites:
+  - "[[lesson-15/README]]"
+related:
+  - "[[lesson-15/README]]"
+key_concepts:
+  - Go Runtime
+  - GMP
+  - GC
+  - pprof
+  - 云原生
+  - 逃逸分析
+---
+
 # Lesson 16: Go 进阶路线
 
-恭喜你完成了本课程的所有核心章节。现在你已经掌握了 Go 的基础语法、并发模型和 Web 开发。但这只是开始，Go 的世界非常广阔。本节将为你指明后续的进阶方向。
+恭喜你完成了本课程的所有核心章节。现在你已经掌握了 Go 的基础语法、[[并发模型]]和 Web 开发。但这只是开始，Go 的世界非常广阔。本节将为你指明后续的进阶方向。
 
 ### 1. 学习目标
-* 了解 Go Runtime 的核心机制（GMP、GC）。
-* 掌握性能分析工具 pprof 的基本用法。
+* 了解 [[Go Runtime]] 的核心机制（[[GMP]]、[[GC]]）。
+* 掌握性能分析工具 [[pprof]] 的基本用法。
 * 熟悉 Go 生态中的主流框架和中间件。
-* 规划从 Java 开发者向云原生 Go 工程师转型的路径。
+* 规划从 [[Java开发者|Java 开发者]]向云原生 Go 工程师转型的路径。
 
-### 2. 给 Java 开发者的类比
+### 2. 给 [[Java]] 开发者的类比
 在 Java 中，进阶通常意味着深入 JVM 原理（类加载、JIT、垃圾回收）、掌握 Spring Cloud 微服务体系、以及各种中间件的深度使用。
 
 在 Go 中，进阶的重点在于理解 Runtime 的调度逻辑、掌握高性能编程技巧、以及深入云原生基础设施（如 K8s 扩展开发）。Go 的生态更倾向于“小而美”的库组合，而不是像 Spring 那样的大一统框架。
@@ -16,8 +39,8 @@
 ### 3. 核心概念
 
 #### GMP 调度模型
-**Java 对比**：Java 线程是 1:1 映射到内核线程的。
-Go 实现了 M:N 调度。G (Goroutine) 是逻辑任务，M (Machine) 是内核线程，P (Processor) 是调度上下文。理解 GMP 是理解 Go 高并发能力的钥匙。
+**[[Java对比|Java 对比]]**：[[Thread|Java 线程]]是 1:1 映射到内核线程的。
+Go 实现了 M:N 调度。G ([[Goroutine]]) 是逻辑任务，M (Machine) 是内核线程，P (Processor) 是调度上下文。理解 GMP 是理解 Go 高并发能力的钥匙。
 
 #### GC (垃圾回收)
 **Java 对比**：Java 有 G1, ZGC 等多种复杂的回收器，调优参数极多。
@@ -55,7 +78,7 @@ func main() {
 
 ### 6. 本节练习
 1. **阅读源码**：尝试阅读 `sync.Mutex` 的源码，看看它是如何处理竞争的。
-2. **实战 pprof**：给 Lesson 15 的缓存项目加上 pprof，观察在 Benchmark 运行时的内存分配情况。
+2. **实战 pprof**：给 Lesson 15 的缓存项目加上 pprof，观察在 [[Benchmark]] 运行时的内存分配情况。
 3. **调研框架**：对比 Gin, Echo 和 Fiber 的优缺点。
 
 ### 7. 面试可能怎么问

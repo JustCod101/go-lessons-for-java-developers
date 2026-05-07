@@ -1,34 +1,58 @@
+---
+title: "Lesson 06: 集合"
+chapter: 06
+part: Go语言基础
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 集合类型
+prerequisites:
+  - "[[lesson-05/README]]"
+related:
+  - "[[lesson-05/README]]"
+  - "[[lesson-07/README]]"
+key_concepts:
+  - Array
+  - Slice
+  - Map
+  - Set
+  - append
+  - sync.Map
+---
+
 # LESSON 06: 集合
 
-本节课我们将深入探讨 Go 语言中的集合类型。对于 Java 开发者来说，理解 Go 的集合类型是掌握 Go 内存模型和性能优化的关键。
+本节课我们将深入探讨 [[Go语言|Go 语言]]中的集合类型。对于 [[Java开发者|Java 开发者]]来说，理解 Go 的集合类型是掌握 Go 内存模型和性能优化的关键。
 
 ## 1. 学习目标
-* 掌握数组（Array）与切片（Slice）的区别。
+* 掌握数组（[[Array]]）与切片（[[Slice]]）的区别。
 * 理解切片的底层结构（Pointer, Len, Cap）。
 * 熟练使用 `append` 函数并理解其扩容机制。
 * 掌握 `map` 的基本用法及 key 的限制。
 * 学习在 Go 中实现 `set` 的惯用方式。
 * 识别并避免切片使用中的常见陷阱。
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java]] 开发者的类比
 * **Array**: 类似于 Java 的原生数组 `int[]`，长度固定且属于类型的一部分。
 * **Slice**: 类似于 Java 的 `ArrayList`，但它更像是一个指向底层数组的“窗口”。
-* **Map**: 类似于 Java 的 `HashMap`，但 Go 的 map 是内置类型，且不支持并发写入。
-* **Set**: Go 没有内置 `HashSet`，通常使用 `map[K]struct{}` 来模拟。
+* **[[Map]]**: 类似于 Java 的 `HashMap`，但 Go 的 map 是内置类型，且不支持并发写入。
+* **[[Set]]**: Go 没有内置 `HashSet`，通常使用 `map[K]struct{}` 来模拟。
 
 ## 3. 核心概念
 
 ### 数组 (Array)
 数组在 Go 中是值类型。当你将一个数组赋值给另一个变量时，会发生完整的内存拷贝。
-* **Java 对比**: Java 数组是引用类型，赋值只是拷贝引用。
+* **[[Java对比|Java 对比]]**: Java 数组是引用类型，赋值只是拷贝引用。
 
 ### 切片 (Slice)
 切片是 Go 中最常用的集合。它由三部分组成：指向底层数组的指针、长度（len）和容量（cap）。
-* **append 扩容**: 当 `len` 超过 `cap` 时，Go 会分配一个新的更大的数组，并将旧数据拷贝过去。这与 `ArrayList` 的扩容逻辑非常相似。
+* **[[append]] 扩容**: 当 `len` 超过 `cap` 时，Go 会分配一个新的更大的数组，并将旧数据拷贝过去。这与 `ArrayList` 的扩容逻辑非常相似。
 * **Java 对比**: `ArrayList` 隐藏了底层数组的操作，而 Go 的切片允许你更直接地控制底层数组。
 
 ### 映射 (Map)
-Map 是引用类型。未初始化的 map 值为 `nil`，直接写入会触发 panic。
+Map 是引用类型。未初始化的 map 值为 `nil`，直接写入会触发 [[panic]]。
 * **Java 对比**: 类似于 `HashMap`，但 Go 的 map 遍历顺序是随机的，这是为了防止开发者依赖特定的遍历顺序。
 
 ### 集合 (Set)
@@ -46,13 +70,13 @@ fmt.Println(sub) // [1 2 3]
 
 ## 5. 常见误区
 * **共享底层数组**: 对切片的截取操作（如 `s2 := s1[1:3]`）会共享同一个底层数组。修改 `s2` 会影响 `s1`。
-* **nil slice vs empty slice**: `var s []int` 是 nil 切片，而 `s := []int{}` 是空切片。虽然 `len` 都是 0，但在 JSON 序列化等场景下表现不同。
-* **Map 并发安全**: Go 的 map 不是线程安全的。如果需要并发读写，必须配合 `sync.Mutex` 或使用 `sync.Map`。
+* **nil slice vs empty slice**: `var s []int` 是 nil 切片，而 `s := []int{}` 是空切片。虽然 `len` 都是 0，但在 [[JSON]] 序列化等场景下表现不同。
+* **Map [[并发安全]]**: Go 的 map 不是线程安全的。如果需要并发读写，必须配合 `sync.Mutex` 或使用 `sync.Map`。
 
 ## 6. 本节练习
 1. 创建一个长度为 5、容量为 10 的切片，并观察 `append` 超过 10 个元素后容量的变化。
 2. 实现一个函数，输入一个字符串切片，返回去重后的结果（利用 map 实现 set）。
-3. 尝试在两个 goroutine 中同时读写同一个 map，观察程序是否崩溃。
+3. 尝试在两个 [[Goroutine|goroutine]] 中同时读写同一个 map，观察程序是否崩溃。
 
 ## 7. 面试可能怎么问
 * **问**: 切片和数组有什么区别？

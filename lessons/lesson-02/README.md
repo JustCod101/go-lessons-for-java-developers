@@ -1,12 +1,36 @@
-# Lesson 02: 环境与 Go Modules
+---
+title: "Lesson 02: 环境与 Go Modules"
+chapter: 02
+part: Go语言基础
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 环境配置
+prerequisites:
+  - "[[lesson-01/README]]"
+related:
+  - "[[lesson-01/README]]"
+  - "[[lesson-03/README]]"
+key_concepts:
+  - Go Modules
+  - module
+  - package
+  - Maven
+  - Gradle
+  - GOPATH
+---
+
+# Lesson 02: 环境与 [[Go Modules]]
 
 ## 1. 学习目标
-- 掌握 Go 开发环境的配置与常用命令
+- 掌握 [[Go开发|Go 开发]]环境的配置与常用命令
 - 理解 Go Modules 的工作原理
 - 能够对比 Go Modules 与 Maven/Gradle 的异同
-- 掌握 package 与 module 的组织关系
+- 掌握 [[package]] 与 [[module]] 的组织关系
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java开发者|Java 开发者]]的类比
 
 ### Go Modules vs Maven/Gradle
 Java 使用 `pom.xml` 或 `build.gradle` 管理依赖。Go 使用 `go.mod` 记录依赖版本，`go.sum` 记录依赖的哈希值以确保安全。
@@ -14,8 +38,8 @@ Java 使用 `pom.xml` 或 `build.gradle` 管理依赖。Go 使用 `go.mod` 记�
 ### Package vs Package
 Java 的包名通常与目录结构严格对应。Go 的包名也建议与目录一致，但一个目录下只能有一个包（不含测试包）。Go 的导入路径是基于 module 根路径的。
 
-### Workspace vs GOPATH
-早期的 Go 使用 `GOPATH` 模式，类似把所有项目都放在一个全局的 `lib` 下。现在的 Go Modules 模式允许你在任何地方创建项目，类似于 Maven 的本地仓库管理方式。
+### Workspace vs [[GOPATH]]
+早期的 Go 使用 `GOPATH` 模式，类似把所有项目都放在一个全局的 `lib` 下。现在的 Go Modules 模式允许你在任何地方创建项目，类似于 [[Maven]] 的本地仓库管理方式。
 
 ## 3. 核心概念
 
@@ -33,7 +57,7 @@ Java 的包名通常与目录结构严格对应。Go 的包名也建议与目录
 - **go.sum**: 校验文件，防止依赖被篡改。
 - **依赖下载**: 默认下载到 `$GOPATH/pkg/mod`，不需要手动管理。
 
-### Java 对比
+### [[Java对比|Java 对比]]
 - **构建速度**: Go 的构建速度远快于 Maven，因为它没有复杂的生命周期插件。
 - **依赖冲突**: Go 使用语义化版本控制，处理冲突的方式比 Maven 的“路径最短优先”更直观。
 
@@ -60,7 +84,7 @@ go mod init github.com/yourname/myproject
 ```
 
 ## 5. 常见误区
-- **误区 1**: 像 Java 一样手动创建复杂的目录结构。Go 提倡扁平化，不要过度设计目录。
+- **误区 1**: 像 [[Java]] 一样手动创建复杂的目录结构。Go 提倡扁平化，不要过度设计目录。
 - **误区 2**: 忘记设置 `GOPROXY`。在国内开发，不设置代理会导致依赖下载失败。
 - **误区 3**: 在一个目录下写多个 package。Go 规定一个文件夹下只能有一个包名。
 

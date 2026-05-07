@@ -1,25 +1,49 @@
+---
+title: "Lesson 07: 包与项目结构"
+chapter: 07
+part: Go语言基础
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 项目结构
+prerequisites:
+  - "[[lesson-06/README]]"
+related:
+  - "[[lesson-06/README]]"
+  - "[[lesson-08/README]]"
+key_concepts:
+  - Go Module
+  - package
+  - 可见性
+  - internal
+  - cmd
+  - pkg
+---
+
 # LESSON 07: 包与项目结构
 
-在 Java 中，我们习惯了深层的 package 嵌套（如 `com.company.project.service.impl`）。Go 的哲学完全不同，它提倡扁平化和简洁性。
+在 [[Java]] 中，我们习惯了深层的 [[package]] 嵌套（如 `com.company.project.service.impl`）。Go 的哲学完全不同，它提倡扁平化和简洁性。
 
 ## 1. 学习目标
-* 理解 Go Module 的基本概念。
+* 理解 [[Go Module]] 的基本概念。
 * 掌握包（package）的声明与导入规则。
 * 理解首字母大小写控制可见性的机制。
-* 熟悉 Go 项目的常见目录结构（cmd, internal, pkg）。
+* 熟悉 [[Go项目|Go 项目]]的常见目录结构（cmd, internal, pkg）。
 * 学习如何将 Java 的多层架构思想迁移到 Go。
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java开发者|Java 开发者]]的类比
 * **Package**: 类似于 Java 的 package，但 Go 的包名通常与目录名一致。
-* **Module**: 类似于 Maven 的 `pom.xml` 或 Gradle 的 `build.gradle`，定义了项目的根路径和依赖。
+* **Module**: 类似于 [[Maven]] 的 `pom.xml` 或 [[Gradle]] 的 `build.gradle`，定义了项目的根路径和依赖。
 * **Visibility**: Go 没有 `public/private/protected` 关键字。首字母大写即为 public，首字母小写即为 private。
 * **Internal**: 类似于 Java 9+ 的模块化系统，限制某些包只能在本项目内使用。
 
 ## 3. 核心概念
 
-### Go Modules
+### [[Go Modules]]
 `go.mod` 文件是项目的核心。它定义了模块路径，这是导入本项目内其他包的基础。
-* **Java 对比**: 类似于 Maven 的 `groupId` 和 `artifactId`。
+* **[[Java对比|Java 对比]]**: 类似于 Maven 的 `groupId` 和 `artifactId`。
 
 ### 可见性 (Visibility)
 这是 Go 最独特的特性之一。

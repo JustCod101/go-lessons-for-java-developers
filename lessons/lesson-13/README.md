@@ -1,16 +1,40 @@
-# Lesson 13: 数据库 CRUD (Database CRUD)
+---
+title: "Lesson 13: 数据库 CRUD (Database CRUD)"
+chapter: 13
+part: Go高级特性
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 数据库
+prerequisites:
+  - "[[lesson-12/README]]"
+related:
+  - "[[lesson-12/README]]"
+  - "[[lesson-14/README]]"
+key_concepts:
+  - database/sql
+  - CRUD
+  - Driver
+  - Connection Pool
+  - Transaction
+  - SQL 注入
+---
 
-在 Java 中，我们经历了从 JDBC 到 MyBatis 再到 JPA/Hibernate 的演进。Go 的数据库操作哲学更接近于“增强版的 JDBC”，它提供了一个标准接口 `database/sql`，具体的数据库实现由驱动提供。
+# Lesson 13: 数据库 [[CRUD]] (Database CRUD)
+
+在 [[Java]] 中，我们经历了从 JDBC 到 MyBatis 再到 JPA/Hibernate 的演进。Go 的数据库操作哲学更接近于“增强版的 JDBC”，它提供了一个标准接口 `database/sql`，具体的数据库实现由驱动提供。
 
 ## 1. 学习目标
 * 理解 `database/sql` 标准库的设计理念
-* 掌握数据库驱动 (Driver) 的导入与使用
+* 掌握数据库驱动 ([[Driver]]) 的导入与使用
 * 学会使用 `Exec`、`Query` 和 `QueryRow` 进行 CRUD 操作
-* 掌握事务 (Transaction) 的处理方法
-* 理解如何预防 SQL 注入
+* 掌握事务 ([[Transaction]]) 的处理方法
+* 理解如何预防 [[SQL注入|SQL 注入]]
 * 了解 Repository 模式在 Go 中的实现
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java开发者|Java 开发者]]的类比
 * **`database/sql`**: 相当于 Java 的 JDBC 接口规范。
 * **`sql.DB`**: 相当于 `javax.sql.DataSource`。它内置了连接池，不是一个单一的数据库连接。
 * **`rows.Scan`**: 相当于 `ResultSet.getXXX` 并手动映射到 POJO。
@@ -21,10 +45,10 @@
 
 ### 驱动 (Driver) 机制
 Go 的 `database/sql` 包不包含任何数据库驱动。你需要通过 `import _ "github.com/go-sql-driver/mysql"` 这种方式匿名导入驱动。
-* **Java 对比**: 类似于在 `pom.xml` 中引入 `mysql-connector-java`，然后在代码中 `Class.forName("com.mysql.jdbc.Driver")`。
+* **[[Java对比|Java 对比]]**: 类似于在 `pom.xml` 中引入 `mysql-connector-java`，然后在代码中 `Class.forName("com.mysql.jdbc.Driver")`。
 
-### 连接池 (Connection Pool)
-`sql.DB` 对象是并发安全的，并且内置了连接池。你不需要手动创建一个 `GenericObjectPool`。
+### 连接池 ([[Connection Pool]])
+`sql.DB` 对象是[[并发安全]]的，并且内置了连接池。你不需要手动创建一个 `GenericObjectPool`。
 * **Java 对比**: 相当于内置了 HikariCP 或 Druid。你可以通过 `db.SetMaxOpenConns()` 等方法配置连接池参数。
 
 ### Exec vs Query
@@ -62,7 +86,7 @@ lastId, _ := result.LastInsertId()
 
 ## 7. 面试可能怎么问
 * **Q: `sql.DB` 是线程安全的吗？**
-  * A: 是的，它设计用于多个 Goroutine 并发使用，并内置了连接池。
+  * A: 是的，它设计用于多个 [[Goroutine]] 并发使用，并内置了连接池。
 * **Q: 如何在 Go 中处理数据库事务？**
   * A: 使用 `db.Begin()` 获取 `Tx` 对象，执行操作后根据是否有错误调用 `tx.Commit()` 或 `tx.Rollback()`。
 * **Q: 为什么导入驱动时要使用 `_` 前缀？**

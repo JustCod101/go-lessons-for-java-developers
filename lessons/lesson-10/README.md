@@ -1,6 +1,30 @@
+---
+title: "Lesson 10: 标准库"
+chapter: 10
+part: Go高级特性
+date: 2026-05-04
+status: published
+tags:
+  - Go
+  - Java对比
+  - 标准库
+prerequisites:
+  - "[[lesson-09/README]]"
+related:
+  - "[[lesson-09/README]]"
+  - "[[lesson-11/README]]"
+key_concepts:
+  - fmt
+  - encoding/json
+  - net/http
+  - time
+  - HTTP Server
+  - JSON
+---
+
 # LESSON 10: 标准库
 
-Go 语言被称为“自带电池”（Batteries Included）的语言。它的标准库非常强大且设计精良，许多在 Java 中需要第三方库（如 Apache Commons, Jackson, Spring）的功能，在 Go 中直接使用标准库就能搞定。
+[[Go语言|Go 语言]]被称为“自带电池”（Batteries Included）的语言。它的标准库非常强大且设计精良，许多在 [[Java]] 中需要第三方库（如 Apache Commons, Jackson, Spring）的功能，在 Go 中直接使用标准库就能搞定。
 
 ## 1. 学习目标
 * 熟悉 Go 标准库的常用包及其功能。
@@ -10,10 +34,10 @@ Go 语言被称为“自带电池”（Batteries Included）的语言。它的�
 * 学习使用 `net/http` 构建基础的 Web 服务。
 * 了解 `os` 和 `io` 包进行文件与系统交互。
 
-## 2. 给 Java 开发者的类比
+## 2. 给 [[Java开发者|Java 开发者]]的类比
 * **fmt**: 类似于 `System.out.printf` 或 `String.format`。
-* **encoding/json**: 类似于 `Jackson` 或 `Gson`。
-* **net/http**: 类似于内置了 `Tomcat/Jetty` 的 `Spring Boot`，但更轻量、更底层。
+* **[[encoding/json]]**: 类似于 `Jackson` 或 `Gson`。
+* **[[net/http]]**: 类似于内置了 `Tomcat/Jetty` 的 `Spring Boot`，但更轻量、更底层。
 * **time**: 类似于 `java.time` 包。
 * **os/io**: 类似于 `java.io` 和 `java.nio`。
 
@@ -25,13 +49,13 @@ Go 的 `fmt` 包使用了类似于 C 语言的格式化占位符。
 * `%+v`: 结构体输出时包含字段名。
 * `%T`: 输出变量类型。
 
-### JSON 处理 (encoding/json)
+### [[JSON]] 处理 (encoding/json)
 Go 通过结构体标签（Struct Tags）来控制 JSON 的映射关系。
-* **Java 对比**: 类似于 Jackson 的 `@JsonProperty` 注解。
+* **[[Java对比|Java 对比]]**: 类似于 Jackson 的 `@JsonProperty` 注解。
 
-### HTTP 服务 (net/http)
+### [[HTTP服务|HTTP 服务]] (net/http)
 Go 原生支持高性能的 HTTP 服务。你不需要安装额外的 Web 容器。
-* **Java 对比**: 在 Java 中你可能需要引入 Spring MVC 和 Tomcat；在 Go 中，几行代码就能启动一个生产级别的 HTTP Server。
+* **Java 对比**: 在 Java 中你可能需要引入 Spring MVC 和 Tomcat；在 Go 中，几行代码就能启动一个生产级别的 [[HTTP Server]]。
 
 ### 时间处理 (time)
 Go 的时间格式化非常独特，它不使用 `yyyy-MM-dd`，而是使用一个固定的参考时间：`2006-01-02 15:04:05`。
